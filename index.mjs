@@ -13,7 +13,6 @@ import figlet from 'figlet';
 import gradient from 'gradient-string';
 import ora from 'ora';
 import inquirer from 'inquirer';
-import checkbox from '@inquirer/checkbox';
 
 import init from './utils/init.js';
 import cli from './utils/cli.js';
@@ -49,7 +48,7 @@ const Heading = message => {
 	// * Variables
 	let userInstaller;
 
-	// Ask the user's package installer
+	// Ask the user's package installer and install the packages
 	if (input.includes('npm')) {
 		inquirer
 			.prompt([
@@ -126,36 +125,8 @@ const Heading = message => {
 			});
 	}
 
-	// input.includes('npm') && Heading('Installing the following packages:');
-
-	// setTimeout(() => {
-	// 	input.includes('npm') && spinner.start();
-	// }, 1500);
-
-	// setTimeout(() => {
-	// 	if (input.includes('npm') && userInstaller) {
-	// 		spinner.start();
-	// 		exec(`npm install`, (error, stdout, stderr) => {
-	// 			if (error) {
-	// 				console.error(`exec error: ${error}`);
-	// 				return;
-	// 			}
-	// 			console.log('\n');
-
-	// 			console.log(`${stdout}`);
-	// 			console.error(`${stderr}`);
-	// 			process.exit();
-	// 		});
-	// 		Log(userInstaller);
-	// 	} else Log('No installer selected');
-
-	// 	process.on('exit', function () {
-	// 		input.includes('npm') && spinner.succeed('Successfully Installed');
-	// 	});
-	// }, 2000);
-
 	// ! If no arguments are passed
-	!input && process.stdout.write('No args specified\n\n');
+	!input ? console.log('No args specified\n\n') : 'null';
 
 	debug && log(flags);
 })();

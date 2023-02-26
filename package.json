@@ -3,8 +3,9 @@
 	"description": "fbdev tools",
 	"version": "0.0.1",
 	"license": "UNLICENSED",
+	"main": "index.mjs",
 	"bin": {
-		"fbdev-tools": "index.js"
+		"fbdev": "index.mjs"
 	},
 	"author": {
 		"name": "FBDev",
@@ -17,7 +18,8 @@
 	],
 	"files": [
 		"index.js",
-		"utils"
+		"utils",
+		"data"
 	],
 	"scripts": {
 		"format": "prettier --write \"./**/*.{js,json}\""
