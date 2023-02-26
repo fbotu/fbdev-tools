@@ -7,12 +7,14 @@
  * @author FBDev <https://francisbotu.com>
  */
 
-import { exec } from 'node:child_process';
+import { exec, execSync } from 'node:child_process';
 import clearConsole from 'clear';
 import figlet from 'figlet';
 import gradient from 'gradient-string';
 import ora from 'ora';
 import inquirer from 'inquirer';
+
+// import { gpush } from './gpush.mjs';
 
 import init from './utils/init.js';
 import cli from './utils/cli.js';
@@ -40,6 +42,15 @@ const Heading = message => {
 		console.log(`\n`);
 	}, 1000);
 };
+
+// * Git Push
+const questions = [
+	{
+		type: 'input',
+		name: 'message',
+		message: 'Enter your commit message?'
+	}
+];
 
 (async () => {
 	init({ clear });
@@ -124,6 +135,48 @@ const Heading = message => {
 				}, 2000);
 			});
 	}
+
+	input.includes(`gpush`) &&
+		inquirer.prompt(questions).then(answers => {
+			console.log(
+				`\n  Message added to commit:\n\n    ${answers.message}\n`
+			);
+			const msg = answers.message;
+
+			execSync(`git add .`, (error, stdout, stderr) => {
+				if (error) {
+					console.error(`exec error: ${error}`);
+					return;
+				}
+				console.log('\n');
+
+				console.log(`${stdout}`);
+				console.error(`${stderr}`);
+				// process.exit();
+			});
+			execSync(`git commit -m "${msg}"`, (error, stdout, stderr) => {
+				if (error) {
+					console.error(`exec error: ${error}`);
+					return;
+				}
+				console.log('\n');
+
+				console.log(`${stdout}`);
+				console.error(`${stderr}`);
+				// process.exit();
+			});
+			execSync(`git push"${msg}`, (error, stdout, stderr) => {
+				if (error) {
+					console.error(`exec error: ${error}`);
+					return;
+				}
+				console.log('\n');
+
+				console.log(`${stdout}`);
+				console.error(`${stderr}`);
+				// process.exit();
+			});
+		});
 
 	// ! If no arguments are passed
 	!input ? console.log('No args specified\n\n') : 'null';

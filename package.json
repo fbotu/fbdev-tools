@@ -17,15 +17,17 @@
 		"FBDev"
 	],
 	"files": [
-		"index.js",
+		"index.mjs",
 		"utils",
-		"data"
+		"data",
+		"gpush.mjs"
 	],
 	"scripts": {
 		"format": "prettier --write \"./**/*.{js,json}\""
 	},
 	"dependencies": {
 		"chalk": "^4.1.2",
+		"chalk-pipe": "^6.0.0",
 		"clear": "^0.1.0",
 		"cli-alerts": "^1.2.2",
 		"cli-handle-error": "^4.4.0",
