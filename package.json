@@ -19,8 +19,7 @@
 	"files": [
 		"index.mjs",
 		"utils",
-		"data",
-		"gpush.mjs"
+		"data"
 	],
 	"scripts": {
 		"format": "prettier --write \"./**/*.{js,json}\""

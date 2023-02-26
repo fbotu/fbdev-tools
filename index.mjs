@@ -165,7 +165,7 @@ const questions = [
 				console.error(`${stderr}`);
 				// process.exit();
 			});
-			execSync(`git push"${msg}`, (error, stdout, stderr) => {
+			execSync(`git push`, (error, stdout, stderr) => {
 				if (error) {
 					console.error(`exec error: ${error}`);
 					return;
